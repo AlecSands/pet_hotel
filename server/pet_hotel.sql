@@ -15,3 +15,6 @@ id SERIAL PRIMARY KEY,
 check_in_date DATE NOT NULL,
 check_out_date DATE NOT NULL,
 pet_id VARCHAR(100)NOT NULL);
+
+-- Create a database named "pets_hotel"
+-- Enter each query 1 by 1
