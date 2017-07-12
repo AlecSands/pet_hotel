@@ -1,3 +1,5 @@
-body {
-  background-color: purple;
+.container h1 {
+    font-size: 36px;
+    border-bottom: 1px solid;
+    margin-bottom: 30px;
 }
