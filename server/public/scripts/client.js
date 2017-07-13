@@ -1,6 +1,7 @@
 $(document).ready(function() {
   console.log('JS Sourced');
   addButtonListeners();
+  refreshTable();
 });
 
 function addButtonListeners () {
@@ -50,7 +51,7 @@ function addButtonListeners () {
 
 function refreshTable() {
   // Clears out the previous tasks from the table element
-  $('#viewVisits').empty();
+  $('#petContainer').empty();
 
   // Sends a GET request for the most current tasks in the database.
   $.ajax({
@@ -58,17 +59,19 @@ function refreshTable() {
     type: 'GET',
     success: function(response){
       console.log(response);
-      var tasks = response.tasks;
-      for (i=0; i<tasks.length; i++) {
-        var task = tasks[i];
-        $tr = $('<tr class="' + task.task_complete + '"></tr>');
+      var pets = response;
+      for (i=0; i<pets.length; i++) {
+        var pet = pets[i];
+        $tr = $('<tr></tr>');
         $tr.data('task', task);
-        $tr.append('<td>' + task.description + '</td>');
-        $tr.append('<td>' + task.location + '</td>');
-        $tr.append('<td>' + task.task_complete + '</td>');
-        $tr.append('<td><button type="button" class="completeBtn">complete</button></td>');
-        $tr.append('<td><button type="button" class="deleteBtn">delete</button></td>');
-        $('#viewTasks').append($tr);
+        $tr.append('<td>' + pet.ownerName + '</td>');
+        $tr.append('<td>' + pet.petName + '</td>');
+        $tr.append('<td>' + pet.petBreed + '</td>');
+        $tr.append('<td>' + pet.petColor + '</td>');
+        $tr.append('<td><button type="button" class="updateBtn btn btn-info">Update</button></td>');
+        $tr.append('<td><button type="button" class="deleteBtn btn btn-info">delete</button></td>');
+        $tr.append('<td><button type="button" class="checkPet">Check' + pet.checkIn + '</button></td>');
+        $('#petContainer').append($tr);
       }
     }
   });
