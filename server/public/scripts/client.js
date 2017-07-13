@@ -5,7 +5,10 @@ $(document).ready(function() {
 });
 
 function addButtonListeners () {
-  $('#registerOwner').on('click', function() {
+  $('#registerOwner').on('click', function(event) {
+    event.preventDefault();
+    console.log('You clicked the register owner button!');
+
     $.ajax({
       url: "/owner",
       type: "POST",
@@ -18,7 +21,11 @@ function addButtonListeners () {
     }); // end of AJAX POST
   });// end of even listener
 
-  $('#registerPet').on('click', function() {
+  $('#registerPet').on('click', function(event) {
+    event.preventDefault();
+
+    console.log('You clicked the register pet button!');
+
     $.ajax({
       url: "/pet",
       type: "POST",
@@ -31,7 +38,8 @@ function addButtonListeners () {
     }); // end of AJAX POST
   });// end of even listener
 
-  $("#viewTasks").on('click', '.deleteBtn', function(){
+  $("#petContainer").on('click', '.deleteBtn', function(){
+    console.log('You clicked the delete button!');
     // Select the object that was stored in the data for this task.
     // It includes all of the data that was sent from the database for this row.
     var thisPetData = $(this).parent().parent().data().task;
