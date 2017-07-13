@@ -25,6 +25,13 @@ function addButtonListeners () {
     event.preventDefault();
 
     console.log('You clicked the register pet button!');
+    var newPet = {};
+    newPet.owner_id = $('#ownerName').val();
+    newPet.name = $('#petName').val();
+    newPet.breed = $('#petBreed').val();
+    newPet.color = $('#petColor').val();
+
+    console.log(newPet);
 
     $.ajax({
       url: "/pet",
@@ -68,7 +75,7 @@ function refreshTable() {
     success: function(response){
       console.log(response);
       var pets = response;
-      for (i=0; i<pets.length; i++) { 
+      for (i=0; i<pets.length; i++) {
         var pet = pets[i];
         $tr = $('<tr></tr>');
         $tr.data('pet', pet);
