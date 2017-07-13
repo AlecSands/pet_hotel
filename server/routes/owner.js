@@ -35,4 +35,33 @@ router.get('/', function(req, res){
   }); // end pool
 }); // end of GET
 
+router.post('/', function(req, res) {
+  var book = req.body;
+  console.log(owners);
+
+  pool.connect(function(errorConnectingToDatabase, db, done){
+    if(errorConnectingToDatabase) {
+      console.log('Error connecting to the database.');
+      res.sendStatus(500);
+    } else {
+
+      var queryText = 'INSERT INTO "owners" ("first_name", "last_name")' +
+                      ' VALUES ($1, $2);';
+      // errorMakingQuery is a bool, result is an object
+      db.query(queryText, [owners.first_name, owners.last_name], function(errorMakingQuery, result){
+        done();
+        if(errorMakingQuery) {
+          console.log('Attempted to query with', queryText);
+          console.log('Error making query');
+          res.sendStatus(500);
+        } else {
+          // console.log(result);
+          // Send back the results
+          res.sendStatus(200);
+        }
+      }); // end query
+    } // end if
+  }); // end pool
+});
+
 module.exports = router;
