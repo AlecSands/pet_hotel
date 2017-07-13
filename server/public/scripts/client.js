@@ -68,17 +68,17 @@ function refreshTable() {
     success: function(response){
       console.log(response);
       var pets = response;
-      for (i=0; i<pets.length; i++) {
+      for (i=0; i<pets.length; i++) { 
         var pet = pets[i];
         $tr = $('<tr></tr>');
-        $tr.data('task', task);
-        $tr.append('<td>' + pet.ownerName + '</td>');
-        $tr.append('<td>' + pet.petName + '</td>');
-        $tr.append('<td>' + pet.petBreed + '</td>');
-        $tr.append('<td>' + pet.petColor + '</td>');
+        $tr.data('pet', pet);
+        $tr.append('<td>' + pet.first_name + " " + pet.last_name + '</td>');
+        $tr.append('<td>' + pet.name + '</td>');
+        $tr.append('<td>' + pet.breed + '</td>');
+        $tr.append('<td>' + pet.color + '</td>');
         $tr.append('<td><button type="button" class="updateBtn btn btn-info">Update</button></td>');
         $tr.append('<td><button type="button" class="deleteBtn btn btn-info">delete</button></td>');
-        $tr.append('<td><button type="button" class="checkPet">Check' + pet.checkIn + '</button></td>');
+        $tr.append('<td><button type="button" class="checkPet">Check</button></td>');
         $('#petContainer').append($tr);
       }
     }
