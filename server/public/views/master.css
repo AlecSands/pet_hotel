@@ -1,3 +1,14 @@
-body {
-  background-color: purple;
+.container h1 {
+    font-size: 36px;
+    border-bottom: 1px solid;
+    margin-bottom: 30px;
+}
+#update {
+  width: 20px;
+}
+#deletePet {
+  width: 20px;
+}
+#checkIn {
+  width: 102px;
 }
