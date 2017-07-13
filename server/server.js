@@ -9,7 +9,7 @@ var visitRoute = require('./routes/visit.js');
 
 app.use(bodyParser.urlencoded({extended: true}));
 
-// app.use('/pet', petRoute);
+app.use('/pet', petRoute);
 // app.use('/owner', ownerRoute);
 // app.use('/visit', visitRoute);
 
