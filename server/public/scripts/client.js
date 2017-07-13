@@ -88,8 +88,8 @@ function refreshTable() {
         $tr.append('<td>' + pet.breed + '</td>');
         $tr.append('<td>' + pet.color + '</td>');
         $tr.append('<td><button type="button" class="updateBtn btn btn-info">Update</button></td>');
-        $tr.append('<td><button type="button" class="deleteBtn btn btn-info">delete</button></td>');
-        $tr.append('<td><button type="button" class="checkPet">Check</button></td>');
+        $tr.append('<td><button type="button" class="deleteBtn btn btn-info">Delete</button></td>');
+        $tr.append('<td><button type="button" class="checkPet btn btn-info">Check In</button></td>');
         $('#petContainer').append($tr);
       }
     }
