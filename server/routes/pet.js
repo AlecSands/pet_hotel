@@ -37,9 +37,11 @@ router.get('/', function(req, res){
   }); // end pool
 }); // end of GET
 
+
+//THIS ROUTE IS IN PROGRESS !!!!!!!!!!!!!
 router.post('/', function(req, res) {
-  var book = req.body;
-  console.log(book);
+  var pet = req.body;
+  console.log(pet);
 
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
@@ -47,8 +49,8 @@ router.post('/', function(req, res) {
       res.sendStatus(500);
     } else {
 
-      var queryText = 'INSERT INTO "books" ("author", "title")' +
-                      ' VALUES ($1, $2);';
+      var queryText = 'INSERT INTO "pets" ("name", "breed", "color", "owner_id")' +
+                      ' VALUES ($1, $2, $3, $4);';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, [book.author, book.title], function(errorMakingQuery, result){
         done();
@@ -65,11 +67,16 @@ router.post('/', function(req, res) {
     } // end if
   }); // end pool
 });
+//THIS ROUTE IS IN PROGRESS !!!!!!!!!!!!!
+
+
 
 // PUT is similar to POST when using PG
 router.put('/', function(req, res){
-  var book = req.body; // Book with updated content
-  console.log('Put route called with book of ', book);
+  var id = req.params.id;
+  var pet = req.body; // Book with updated content
+  console.log('Put route called with pet: ', pet);
+  console.log('the pet id is: ', id);
 
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
@@ -77,9 +84,9 @@ router.put('/', function(req, res){
       res.sendStatus(500);
     } else {
       // We connected to the database!!!
-      var queryText = 'UPDATE "books" SET "author" = $1, "title" = $2 WHERE id = $3;';
+      var queryText = 'UPDATE "pets" SET "name" = $1, "breed" = $2, "color" = $3 WHERE id = $4;';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [book.authorUpdate, book.titleUpdate, book.editingBookId], function(errorMakingQuery, result){
+      db.query(queryText, [book.authorUpdate, book.titleUpdate, book.editingBookId, pet.id], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
@@ -109,7 +116,7 @@ router.delete('/:id', function(req, res){
       res.sendStatus(500);
     } else {
       // We connected to the database!!!
-      var queryText = 'DELETE FROM "books" WHERE id = $1;';
+      var queryText = 'DELETE FROM "pets" WHERE id = $1;';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, [id], function(errorMakingQuery, result){
         done();
