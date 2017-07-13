@@ -68,7 +68,7 @@ function refreshTable() {
     success: function(response){
       console.log(response);
       var pets = response;
-      for (i=0; i<pets.length; i++) {
+      for (i=0; i<pets.length; i++) { 
         var pet = pets[i];
         $tr = $('<tr></tr>');
         $tr.data('pet', pet);
