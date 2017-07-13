@@ -9,6 +9,10 @@ function addButtonListeners () {
     event.preventDefault();
     console.log('You clicked the register owner button!');
 
+    var newOwner = {};
+    newOwner.firstName = $('#firstName').val();
+    newOwner.lastName = $('#lastName').val();
+
     $.ajax({
       url: "/owner",
       type: "POST",
@@ -87,6 +91,25 @@ function refreshTable() {
         $tr.append('<td><button type="button" class="deleteBtn btn btn-info">delete</button></td>');
         $tr.append('<td><button type="button" class="checkPet">Check</button></td>');
         $('#petContainer').append($tr);
+      }
+    }
+  });
+}
+
+function refreshOwners() {
+  $('#ownerName').empty();
+
+  $.ajax({
+    url: '/owner',
+    type: 'GET',
+    success: function(response){
+      console.log(response);
+      var owners = response;
+      for (i=0; i<owners.length; i++) {
+        var owner = owners[i];
+        $option = $('<option value = "' + owner.id + '">' + owner.first_name + ' ' + owner.last_name + '</option>');
+        $owner.data('owner', owner);
+        $('#ownerName').append($option);
       }
     }
   });
