@@ -48,10 +48,10 @@ router.post('/', function(req, res) {
       var queryText = 'INSERT INTO "owners" ("first_name", "last_name")' +
                       ' VALUES ($1, $2);';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [owner.first_name, owner.last_name], function(errorMakingQuery, result){
+      db.query(queryText, [owner.firstName, owner.lastName], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
-          console.log('Attempted to query with', queryText);
+          console.log(errorMakingQuery);
           console.log('Error making query');
           res.sendStatus(500);
         } else {

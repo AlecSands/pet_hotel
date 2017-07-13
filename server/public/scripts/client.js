@@ -2,6 +2,7 @@ $(document).ready(function() {
   console.log('JS Sourced');
   addButtonListeners();
   refreshTable();
+  refreshOwners();
 });
 
 function addButtonListeners () {
@@ -20,7 +21,7 @@ function addButtonListeners () {
       success: function(response) {
         console.log('ajax response: ', response);
         // Refresh the data so that it reflects the most current database
-        refreshTable();
+        refreshOwners();
       }
     }); // end of AJAX POST
   });// end of even listener
@@ -53,11 +54,11 @@ function addButtonListeners () {
     console.log('You clicked the delete button!');
     // Select the object that was stored in the data for this task.
     // It includes all of the data that was sent from the database for this row.
-    var thisPetData = $(this).parent().parent().data().task;
-
+    var thisPetData = $(this).parent().parent().data().pet.id;
+console.log(thisPetData);
     // Send AJAX DELETE request to delete a row from the database
     $.ajax({
-       url: '/pet/' + thisPetData.user_id,
+       url: '/pet/' + thisPetData,
        type: 'DELETE',
        success: function(response) {
          console.log('tasks deleted');
@@ -108,7 +109,7 @@ function refreshOwners() {
       for (i=0; i<owners.length; i++) {
         var owner = owners[i];
         $option = $('<option value = "' + owner.id + '">' + owner.first_name + ' ' + owner.last_name + '</option>');
-        $owner.data('owner', owner);
+        $option.data('owner', owner);
         $('#ownerName').append($option);
       }
     }
