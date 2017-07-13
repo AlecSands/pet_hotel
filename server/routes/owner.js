@@ -45,8 +45,8 @@ router.post('/', function(req, res) {
       res.sendStatus(500);
     } else {
 
-      var queryText = 'INSERT INTO "owners" ("id", "first_name", "last_name")' +
-                      ' VALUES ($1, $2, $3);';
+      var queryText = 'INSERT INTO "owners" ("first_name", "last_name")' +
+                      ' VALUES ($1, $2);';
       // errorMakingQuery is a bool, result is an object
       db.query(queryText, [owners.first_name, owners.last_name], function(errorMakingQuery, result){
         done();
