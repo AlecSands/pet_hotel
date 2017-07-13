@@ -34,3 +34,5 @@ router.get('/', function(req, res){
     } // end if
   }); // end pool
 }); // end of GET
+
+module.exports = router;
