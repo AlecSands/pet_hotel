@@ -36,8 +36,8 @@ router.get('/', function(req, res){
 }); // end of GET
 
 router.post('/', function(req, res) {
-  var book = req.body;
-  console.log(owners);
+  var owner = req.body;
+  console.log(owner);
 
   pool.connect(function(errorConnectingToDatabase, db, done){
     if(errorConnectingToDatabase) {
@@ -48,7 +48,7 @@ router.post('/', function(req, res) {
       var queryText = 'INSERT INTO "owners" ("first_name", "last_name")' +
                       ' VALUES ($1, $2);';
       // errorMakingQuery is a bool, result is an object
-      db.query(queryText, [owners.first_name, owners.last_name], function(errorMakingQuery, result){
+      db.query(queryText, [owner.first_name, owner.last_name], function(errorMakingQuery, result){
         done();
         if(errorMakingQuery) {
           console.log('Attempted to query with', queryText);
